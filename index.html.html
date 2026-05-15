@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Cleaners & Laundry | South End Charlotte, NC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a1a; background: #fff; font-size: 15px; line-height: 1.6; }
+
+  .topbar { background: #0d2244; color: #fde98a; font-size: 12px; padding: 8px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .topbar a { color: #fde98a; text-decoration: none; }
+
+  nav { background: #fff; border-bottom: 1px solid #e5e5e5; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 72px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.05); }
+  .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #0d2244; line-height: 1.1; text-decoration: none; }
+  .logo span { display: block; font-size: 11px; font-family: 'DM Sans', sans-serif; font-weight: 400; letter-spacing: 0.2em; color: #1a56a0; text-transform: uppercase; margin-top: 1px; }
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a { color: #333; text-decoration: none; font-size: 13.5px; }
+  .nav-links a:hover { color: #1a56a0; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown:hover .dropdown { display: block; }
+  .dropdown { display: none; position: absolute; top: calc(100% + 10px); left: -12px; background: #fff; border: 1px solid #e5e5e5; min-width: 220px; padding: 8px 0; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-radius: 6px; }
+  .dropdown a { display: block; padding: 9px 18px; font-size: 13px; color: #444; }
+  .dropdown a:hover { background: #eef3fc; color: #1a56a0; }
+  .call-btn { background: #1a56a0 !important; color: #fff !important; padding: 10px 20px; border-radius: 5px; font-weight: 500 !important; }
+  .call-btn:hover { background: #143d7a !important; }
+
+  .hero { background: #0d2244; color: #fff; padding: 80px 40px 72px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 420px; height: 420px; border-radius: 50%; border: 70px solid rgba(255,255,255,0.04); pointer-events: none; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: #fde98a; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; padding: 6px 14px; border-radius: 3px; margin-bottom: 22px; font-weight: 500; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
+  .hero p { font-size: 16px; color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 32px; max-width: 480px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-white { background: #fff; color: #0d2244; padding: 13px 28px; border-radius: 5px; font-size: 14px; font-weight: 500; text-decoration: none; }
+  .btn-white:hover { background: #e8f4dc; }
+  .btn-ghost { background: transparent; color: #fff; padding: 13px 28px; border-radius: 5px; font-size: 14px; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.45); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.8); }
+  .hero-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 28px 26px; position: relative; z-index: 1; }
+  .hero-card h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: #fde98a; margin-bottom: 18px; }
+  .info-row { display: flex; gap: 12px; margin-bottom: 15px; align-items: flex-start; }
+  .iicon { font-size: 17px; margin-top: 2px; flex-shrink: 0; }
+  .itext { font-size: 13px; color: rgba(255,255,255,0.82); line-height: 1.55; }
+  .itext strong { color: #fff; display: block; font-size: 13.5px; }
+
+  .nb-strip { background: #1a56a0; color: #fff; padding: 16px 40px; display: flex; align-items: center; justify-content: center; gap: 28px; font-size: 13.5px; flex-wrap: wrap; }
+  .nb-strip span { opacity: 0.9; }
+  .nb-strip strong { color: #fde98a; }
+  .nb-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 50%; }
+
+  .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #1a56a0; font-weight: 500; margin-bottom: 10px; }
+
+  .about { background: #f0f4fa; padding: 72px 40px; }
+  .about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .about h2 { font-family: 'Playfair Display', serif; font-size: 34px; color: #0d2244; margin-bottom: 18px; line-height: 1.2; }
+  .about p { font-size: 15px; color: #555; line-height: 1.78; margin-bottom: 14px; }
+  .about a { color: #1a56a0; font-weight: 500; text-decoration: none; font-size: 14px; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stat { background: #fff; border: 1px solid #b8d0f0; border-radius: 10px; padding: 20px; text-align: center; }
+  .stat-n { font-family: 'Playfair Display', serif; font-size: 34px; color: #1a56a0; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+  .stat-l { font-size: 12px; color: #777; line-height: 1.4; }
+
+  .perks { background: #fff; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; padding: 28px 40px; }
+  .perks-inner { max-width: 900px; margin: 0 auto; display: flex; }
+  .perk { flex: 1; text-align: center; padding: 0 20px; }
+  .perk:not(:last-child) { border-right: 1px solid #e5e5e5; }
+  .perk-icon { font-size: 26px; margin-bottom: 8px; display: block; }
+  .perk h4 { font-size: 14px; font-weight: 500; color: #0d2244; margin-bottom: 3px; }
+  .perk p { font-size: 12.5px; color: #888; }
+
+  .services { padding: 80px 40px; background: #fff; }
+  .services-header { text-align: center; margin-bottom: 52px; }
+  .services-header h2 { font-family: 'Playfair Display', serif; font-size: 34px; color: #0d2244; margin-bottom: 10px; }
+  .services-header p { font-size: 15px; color: #666; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
+  .sc { border: 1px solid #e5e5e5; border-radius: 10px; padding: 26px 16px 20px; text-align: center; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .sc:hover { border-color: #1a56a0; transform: translateY(-3px); box-shadow: 0 4px 16px rgba(26,86,160,0.1); }
+  .sc-icon { width: 50px; height: 50px; background: #e8f0fb; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 22px; }
+  .sc h4 { font-size: 13.5px; font-weight: 500; color: #0d2244; margin-bottom: 6px; line-height: 1.3; }
+  .sc p { font-size: 12px; color: #999; line-height: 1.5; margin-bottom: 10px; }
+  .sc a { font-size: 12px; color: #1a56a0; text-decoration: none; font-weight: 500; }
+
+  .testimonials { background: #f0f4fa; padding: 80px 40px; }
+  .t-header { text-align: center; margin-bottom: 52px; }
+  .t-header h2 { font-family: 'Playfair Display', serif; font-size: 34px; color: #0d2244; margin-bottom: 8px; }
+  .t-header p { font-size: 15px; color: #666; }
+  .t-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; max-width: 900px; margin: 0 auto; }
+  .t { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 24px; }
+  .stars { color: #1a56a0; font-size: 13px; letter-spacing: 3px; margin-bottom: 12px; }
+  .t blockquote { font-size: 13.5px; color: #555; line-height: 1.72; margin-bottom: 14px; font-style: italic; }
+  .t cite { font-size: 12.5px; color: #0d2244; font-style: normal; font-weight: 500; }
+  .t .tag { display: inline-block; background: #e8f0fb; color: #1a56a0; font-size: 11px; padding: 3px 10px; border-radius: 20px; margin-top: 10px; font-weight: 500; }
+
+  .awards { background: #0d2244; color: #fff; padding: 52px 40px; text-align: center; }
+  .awards h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 10px; }
+  .awards p { color: rgba(255,255,255,0.7); font-size: 14.5px; max-width: 520px; margin: 0 auto 28px; line-height: 1.7; }
+  .award-badges { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .award-badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fde98a; font-size: 13px; padding: 10px 20px; border-radius: 6px; font-weight: 500; }
+  .awards-note { font-size: 12.5px; opacity: 0.5; font-style: italic; }
+
+  .location { background: #fff; padding: 80px 40px; }
+  .loc-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .loc-inner h2 { font-family: 'Playfair Display', serif; font-size: 34px; color: #0d2244; margin-bottom: 28px; }
+  .loc-row { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
+  .loc-row .lic { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .loc-row h4 { font-size: 14px; font-weight: 500; color: #0d2244; margin-bottom: 3px; }
+  .loc-row p { font-size: 13.5px; color: #666; line-height: 1.6; }
+  .loc-row a { color: #1a56a0; font-weight: 500; text-decoration: none; }
+  .map-box { background: #e8f0fb; border: 1px solid #b8d0f0; border-radius: 10px; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 24px; }
+  .map-box .map-em { font-size: 42px; margin-bottom: 4px; }
+  .map-box strong { font-size: 15px; color: #0d2244; }
+  .map-box p { font-size: 13px; color: #666; line-height: 1.6; }
+  .map-box a { display: inline-block; margin-top: 12px; background: #1a56a0; color: #fff; padding: 11px 24px; border-radius: 5px; font-size: 13.5px; font-weight: 500; text-decoration: none; }
+  .map-box a:hover { background: #143d7a; }
+
+  footer { background: #0d2244; color: #fde98a; padding: 56px 40px 28px; }
+  .fg { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+  .fl { font-family: 'Playfair Display', serif; font-size: 21px; color: #fff; margin-bottom: 10px; }
+  .ft { font-size: 13.5px; color: rgba(253,233,138,0.7); line-height: 1.65; margin-bottom: 18px; }
+  footer h4 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #f5c800; margin-bottom: 16px; font-weight: 500; }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 9px; }
+  footer ul li a { font-size: 13.5px; color: rgba(253,233,138,0.8); text-decoration: none; }
+  footer ul li a:hover { color: #fff; }
+  .fc p { font-size: 13.5px; color: rgba(253,233,138,0.8); margin-bottom: 8px; line-height: 1.6; }
+  .fb { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(253,233,138,0.4); }
+  .closed { color: #e07b5a !important; }
+
+  @media(max-width:768px){
+    .hero{grid-template-columns:1fr;} .hero-card{display:none;} .hero h1{font-size:32px;}
+    .about-inner,.loc-inner{grid-template-columns:1fr;}
+    .fg{grid-template-columns:1fr;gap:28px;}
+    .nav-links{display:none;}
+    .topbar{flex-direction:column;gap:4px;text-align:center;}
+    .perks-inner{flex-direction:column;}
+    .perk:not(:last-child){border-right:none;border-bottom:1px solid #e5e5e5;padding-bottom:18px;margin-bottom:18px;}
+  }
+</style>
+</head>
+<body>
+
+
+<div style="background: linear-gradient(135deg, #0d2244 0%, #1a56a0 50%, #0d2244 100%); color: #fff; padding: 10px 24px; text-align: center; position: relative; overflow: hidden;">
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;">
+    <span style="position:absolute;font-size:60px;opacity:0.05;top:-10px;left:5%;animation:spin 8s linear infinite;display:inline-block;">&#x2B50;</span>
+    <span style="position:absolute;font-size:40px;opacity:0.07;top:2px;left:20%;animation:spin 6s linear infinite reverse;display:inline-block;">&#x2B50;</span>
+    <span style="position:absolute;font-size:50px;opacity:0.05;top:-8px;left:40%;animation:spin 10s linear infinite;display:inline-block;">&#x2B50;</span>
+    <span style="position:absolute;font-size:35px;opacity:0.07;top:4px;left:60%;animation:spin 7s linear infinite reverse;display:inline-block;">&#x2B50;</span>
+    <span style="position:absolute;font-size:55px;opacity:0.05;top:-6px;left:78%;animation:spin 9s linear infinite;display:inline-block;">&#x2B50;</span>
+    <span style="position:absolute;font-size:45px;opacity:0.06;top:0px;left:92%;animation:spin 5s linear infinite reverse;display:inline-block;">&#x2B50;</span>
+  </div>
+  <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:6px;">
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.2s;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.4s;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.6s;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.8s;display:inline-block;">&#x2B50;</span>
+    <span style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fde98a;margin:0 12px;">South End Charlotte's 5-Star Cleaners</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.8s;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.6s;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.4s;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite 0.2s;display:inline-block;">&#x2B50;</span>
+    <span style="font-size:20px;color:#fde98a;animation:pulse 2s ease-in-out infinite;display:inline-block;">&#x2B50;</span>
+  </div>
+</div>
+<style>
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 1; } }
+</style>
+
+<div class="topbar">
+  <span>&#x1F550; Mon–Fri 7am–7pm &nbsp;|&nbsp; Sun 9am–3pm &nbsp;|&nbsp; <span class="closed">Sat Closed</span></span>
+  <span>&#x1F4DE; <a href="tel:7049304599">(704) 930-4599</a> &nbsp;|&nbsp; &#x1F4CD; 2729 South Blvd, Charlotte NC 28209</span>
+</div>
+
+<nav>
+  <a href="#" class="logo">Star Cleaners <span>&amp; Laundry</span></a>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#location">Hours &amp; Location</a>
+    <a href="tel:7049304599" class="call-btn">Call Us</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content" style="position:relative;z-index:1;">
+    <div class="hero-badge">&#x2B50; Nextdoor Neighborhood Favorite — 3 Years Running</div>
+    <h1>South End Charlotte's Trusted Cleaners</h1>
+    <p>Star Cleaners &amp; Laundry has been a South End staple for over 15 years. Professional dry cleaning, expert alterations, and shoe repair — with fast 2–3 day turnaround, right in the Sedgefield Shopping Center on South Blvd.</p>
+    <div class="hero-cta">
+      <a href="tel:7049304599" class="btn-white">&#x1F4DE; (704) 930-4599</a>
+      <a href="#services" class="btn-ghost">View All Services</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <h3>Visit Us</h3>
+    <div class="info-row">
+      <div class="iicon">&#x1F4CD;</div>
+      <div class="itext"><strong>2729 South Blvd</strong>Charlotte, NC 28209<br>Sedgefield Shopping Center<br><small style="opacity:0.65">(near Harris Teeter)</small></div>
+    </div>
+    <div class="info-row">
+      <div class="iicon">&#x1F552;</div>
+      <div class="itext">
+        <strong>Mon–Fri: 7am – 7pm</strong>
+        Sunday: 9am – 3pm<br>
+        <span style="color:#f4a261;font-size:12px;">Saturday: Closed</span>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="iicon">&#x1F4DE;</div>
+      <div class="itext"><strong>(704) 930-4599</strong></div>
+    </div>
+    <div class="info-row">
+      <div class="iicon">&#x26A1;</div>
+      <div class="itext">Fast 2–3 day turnaround on most items</div>
+    </div>
+    <div class="info-row">
+      <div class="iicon">&#x1F4A7;</div>
+      <div class="itext">Complimentary water while you wait</div>
+    </div>
+  </div>
+</section>
+
+<div class="nb-strip">
+  <span>&#x1F3C6; <strong>Nextdoor Neighborhood Favorite</strong> 2017, 2018 &amp; 2019</span>
+  <div class="nb-dot"></div>
+  <span>Located in <strong>Sedgefield Shopping Center</strong> on South Blvd</span>
+  <div class="nb-dot"></div>
+  <span>Proudly serving <strong>South End &amp; Dilworth</strong> for 15+ years</span>
+</div>
+
+<section class="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-label">About Us</div>
+      <h2>A South End Gem Since 2007</h2>
+      <p>For over 15 years, Star Cleaners &amp; Laundry has been the neighborhood go-to for South End and Dilworth residents. Located in the Sedgefield Shopping Center right next to Harris Teeter on South Boulevard, we're easy to get to and even easier to love.</p>
+      <p>Now run by Conrad and Monica, we carry on the tradition of exceptional garment care with a personal touch. From your everyday work shirts to your finest suit, your wedding gown, or shoes that need new life — every item gets the attention it deserves.</p>
+      <a href="#" style="display:inline-block;margin-top:6px;">Meet the Team &rarr;</a>
+    </div>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-n">15+</div>
+        <div class="stat-l">Years serving South End Charlotte</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2–3</div>
+        <div class="stat-l">Day turnaround on most items</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">3x</div>
+        <div class="stat-l">Nextdoor Neighborhood Favorite</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">&#x1F4A7;</div>
+        <div class="stat-l">Complimentary water every visit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="perks">
+  <div class="perks-inner">
+    <div class="perk">
+      <span class="perk-icon">&#x26A1;</span>
+      <h4>Fast Turnaround</h4>
+      <p>Most items ready in 2–3 days</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">&#x1F91D;</span>
+      <h4>Personal Service</h4>
+      <p>Conrad &amp; Monica treat every item with care</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">&#x1F4B0;</span>
+      <h4>Unmatched Value</h4>
+      <p>Fair prices for South End &amp; Dilworth</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">&#x1F4A7;</span>
+      <h4>Complimentary Water</h4>
+      <p>Refreshments while you drop off or pick up</p>
+    </div>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-label">What We Offer</div>
+    <h2>Our Services</h2>
+    <p>Professional garment care, expert alterations, and shoe repair — all in one convenient location.</p>
+  </div>
+  <div class="services-grid">
+    <div class="sc">
+      <div class="sc-icon">&#x2728;</div>
+      <h4>Dry Cleaning</h4>
+      <p>Suits, dresses, coats &amp; delicates treated with expert care</p>
+      
+    </div>
+    <div class="sc">
+      <div class="sc-icon">&#x1F455;</div>
+      <h4>Shirt Service</h4>
+      <p>Crisp, perfectly starched and pressed every time</p>
+      
+    </div>
+    <div class="sc">
+      <div class="sc-icon">&#x1F9FA;</div>
+      <h4>Wash / Dry / Fold</h4>
+      <p>Everyday laundry handled with attention to detail</p>
+      
+    </div>
+    <div class="sc">
+      <div class="sc-icon">&#x2702;&#xFE0F;</div>
+      <h4>Alterations &amp; Sewing</h4>
+      <p>Hemming, zippers, repairs, tailoring &amp; more</p>
+      
+    </div>
+    <div class="sc">
+      <div class="sc-icon">&#x1F45F;</div>
+      <h4>Shoe Repair</h4>
+      <p>Restore your favorite footwear to like-new condition</p>
+      
+    </div>
+    <div class="sc">
+      <div class="sc-icon">&#x1F470;</div>
+      <h4>Wedding Gowns</h4>
+      <p>Gentle cleaning &amp; preservation for your special dress</p>
+      
+    </div>
+    <div class="sc">
+      <div class="sc-icon">&#x1F9F3;</div>
+      <h4>Household Items</h4>
+      <p>Comforters, duvets, rugs &amp; large items</p>
+      
+    </div>
+    <div class="sc">
+      <div class="sc-icon">&#x1F9B8;</div>
+      <h4>Ironing &amp; Press</h4>
+      <p>Wrinkle-free finish on any garment, fast</p>
+      
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="t-header">
+    <div class="section-label">What the Neighborhood Says</div>
+    <h2>Customer Reviews</h2>
+    <p>Trusted by South End and Dilworth residents for over 15 years.</p>
+  </div>
+  <div class="t-grid">
+    <div class="t">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Greatest dry cleaner in Charlotte! My clothes have always been treated with care and the service is way above average. Clothes always neat and organized. Perfect amount of starch on the button downs. Make no doubt about it — Star Cleaners rocks!!"</blockquote>
+      <cite>— Yelp Reviewer</cite>
+      <div class="tag">Dry Cleaning &amp; Shirts</div>
+    </div>
+    <div class="t">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"I have been using Star Cleaners since 2017. They've cleaned work clothes, suits, dresses, and even my wedding dress and veil. We've had them repair and mend multiple items. Always happy with the results and the fair prices. This is a gem within South End."</blockquote>
+      <cite>— BestProsInTown Reviewer</cite>
+      <div class="tag">Wedding Gown &amp; Alterations</div>
+    </div>
+    <div class="t">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"I needed a quick turnaround on my suit and they made sure it got back to me in time! Extremely friendly, kind, and efficient. I will be coming back for years to come."</blockquote>
+      <cite>— BestProsInTown Reviewer</cite>
+      <div class="tag">Suit Cleaning</div>
+    </div>
+    <div class="t">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Star Cleaners in the Harris Teeter shopping center off South Blvd is great! We have been using them for at least 15 years. Followed them from their old location."</blockquote>
+      <cite>— Nextdoor Neighbor</cite>
+      <div class="tag">Long-time Customer</div>
+    </div>
+    <div class="t">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Super convenient for anyone in South End and the value is pretty much unmatched. They just added Sunday hours which is awesome. Complimentary water and a quick 2–3 day turnaround too."</blockquote>
+      <cite>— Yelp Reviewer</cite>
+      <div class="tag">General Services</div>
+    </div>
+    <div class="t">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Now run by Conrad and Monica. They took over from Grace and are very nice people. They will take care of your clothes and help you to the best of their ability."</blockquote>
+      <cite>— Yelp Reviewer</cite>
+      <div class="tag">Current Owners</div>
+    </div>
+  </div>
+</section>
+
+<section class="awards">
+  <div class="section-label" style="color:#f5c800;margin-bottom:12px;">Recognition</div>
+  <h2>A True South End Neighborhood Favorite</h2>
+  <p>Recognized three years running by Nextdoor neighbors as the neighborhood's go-to cleaner. Dry cleaners are rare in South End — we're proud to fill that role for the community.</p>
+  <div class="award-badges">
+    <div class="award-badge">&#x1F3C6; Nextdoor Favorite 2017</div>
+    <div class="award-badge">&#x1F3C6; Nextdoor Favorite 2018</div>
+    <div class="award-badge">&#x1F3C6; Nextdoor Favorite 2019</div>
+  </div>
+  <p class="awards-note">"Dry cleaners are hard to come by in Southend... Star Cleaners fills that gap." — Yelp reviewer</p>
+</section>
+
+<section class="location" id="location">
+  <div class="loc-inner">
+    <div>
+      <div class="section-label">Find Us</div>
+      <h2>Location &amp; Hours</h2>
+      <div class="loc-row">
+        <div class="lic">&#x1F4CD;</div>
+        <div>
+          <h4>Address</h4>
+          <p>2729 South Blvd, Charlotte, NC 28209<br>Sedgefield Shopping Center<br><em style="font-size:12px;color:#aaa">Near South Blvd &amp; Elmhurst Rd — next to Harris Teeter</em></p>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="lic">&#x1F552;</div>
+        <div>
+          <h4>Hours</h4>
+          <p>
+            Monday – Friday: <strong>7:00am – 7:00pm</strong><br>
+            Sunday: <strong>9:00am – 3:00pm</strong><br>
+            Saturday: <strong class="closed">Closed</strong>
+          </p>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="lic">&#x1F4DE;</div>
+        <div>
+          <h4>Phone</h4>
+          <p><a href="tel:7049304599">(704) 930-4599</a></p>
+        </div>
+      </div>
+      <div class="loc-row">
+        <div class="lic">&#x1F17F;&#xFE0F;</div>
+        <div>
+          <h4>Parking</h4>
+          <p>Free parking in the Sedgefield Shopping Center lot</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="map-box">
+        <div class="map-em">&#x1F5FA;&#xFE0F;</div>
+        <strong>Star Cleaners &amp; Laundry</strong>
+        <p>2729 South Blvd<br>Sedgefield Shopping Center<br>Charlotte, NC 28209</p>
+        <a href="https://maps.google.com/?q=2729+South+Blvd+Charlotte+NC+28209" target="_blank">Get Directions &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">Star Cleaners &amp; Laundry</div>
+      <p class="ft">South End Charlotte's trusted cleaners for over 15 years. Expert dry cleaning, alterations, and shoe repair — with a friendly face and fast turnaround every time.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Dry Cleaning</a></li>
+        <li><a href="#">Shirt Service</a></li>
+        <li><a href="#">Wash / Dry / Fold</a></li>
+        <li><a href="#">Alterations &amp; Sewing</a></li>
+        <li><a href="#">Shoe Repair</a></li>
+        <li><a href="#">Wedding Gowns</a></li>
+        <li><a href="#">Household Items</a></li>
+        <li><a href="#">Ironing &amp; Press</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Contact &amp; Hours</h4>
+      <p>2729 South Blvd<br>Charlotte, NC 28209<br><em style="font-size:12px;opacity:0.6">Sedgefield Shopping Center</em></p>
+      <p>(704) 930-4599</p>
+      <p>Mon–Fri: 7am – 7pm<br>Sunday: 9am – 3pm<br><span class="closed">Saturday: Closed</span></p>
+      <p style="margin-top:16px;"><a href="https://maps.google.com/?q=2729+South+Blvd+Charlotte+NC+28209" target="_blank" style="background:#1a56a0;color:#fff;padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;font-weight:500;">Get Directions</a></p>
+    </div>
+  </div>
+  <div class="fb">
+    <span>&copy; 2026 Star Cleaners &amp; Laundry. All rights reserved.</span>
+    <span>2729 South Blvd, Charlotte, NC 28209</span>
+  </div>
+</footer>
+
+</body>
+</html>
